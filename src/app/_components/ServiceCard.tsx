@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface ServiceCardProps {
   title: string;
@@ -11,7 +11,8 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ title, description, link }: ServiceCardProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const cardRef = React.useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
