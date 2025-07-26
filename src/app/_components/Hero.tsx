@@ -1,33 +1,42 @@
-'use client';
-import { motion } from 'framer-motion';
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setOffsetY(window.scrollY * 0.5);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center items-center text-center bg-gradient-to-r from-blue-50 via-white to-blue-100 px-6 pt-28">
-      <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl md:text-6xl font-bold mb-4"
-      >
-        Создавай AI-контент за секунды
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-gray-600 max-w-xl mb-8"
-      >
-        Видео, изображения, голос и текст — всё в одном месте. Без кода. Без лишних кликов.
-      </motion.p>
-      <motion.a
-        href="/services"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition"
-      >
-        Начать сейчас →
-      </motion.a>
+    <section
+      className="relative text-center py-32 px-6 overflow-hidden"
+      style={{ transform: `translateY(${offsetY}px)` }}
+    >
+      <h1 className="text-5xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-yellow-400 animate-fade-in">
+        Создавай будущее с AI
+      </h1>
+      <p className="mt-6 text-lg max-w-2xl mx-auto text-gray-200">
+        Мы даём тебе лучшие AI-инструменты для генерации видео, изображений, голоса и текста.
+      </p>
+      <div className="mt-8 flex justify-center gap-4">
+        <Link
+          href="/services"
+          className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:rotate-1"
+        >
+          Начать сейчас
+        </Link>
+        <Link
+          href="/pricing"
+          className="bg-white text-pink-600 font-semibold py-3 px-6 rounded-lg shadow-lg transition transform hover:scale-105 hover:-rotate-1"
+        >
+          Узнать больше
+        </Link>
+      </div>
     </section>
   );
 }

@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  margin: 0;
-  padding: 0;
+/* 🔹 Анимация появления */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+/* 🔹 Плавная тень при наведении */
+.card-hover:hover {
+  box-shadow: 0 10px 20px rgba(255, 100, 150, 0.4);
+  transform: scale(1.05) rotate3d(1, 1, 0, 5deg);
 }

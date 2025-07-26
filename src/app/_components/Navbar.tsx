@@ -1,22 +1,21 @@
-'use client';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+"use client";
+
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="w-full fixed top-0 z-50 bg-white shadow-md px-8 py-4 flex justify-between items-center"
-    >
-      <Link href="/" className="text-2xl font-bold text-blue-600">Redpillnet</Link>
-      <div className="flex gap-6 text-gray-700 font-medium text-sm md:text-base">
-        <Link href="/">Главная</Link>
-        <Link href="/services">Сервисы</Link>
-        <Link href="/pricing">Цены</Link>
-        <Link href="/dashboard">Кабинет</Link>
+    <nav className="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-lg sticky top-0 z-50">
+      <div className="text-2xl font-extrabold tracking-wide">
+        <span className="text-pink-400">Red</span>
+        <span className="text-yellow-300">Pill</span>
       </div>
-    </motion.nav>
+
+      <div className="flex gap-8 text-lg">
+        <Link href="/" className="hover:text-pink-300 transition">Главная</Link>
+        <Link href="/services" className="hover:text-pink-300 transition">Сервисы</Link>
+        <Link href="/pricing" className="hover:text-pink-300 transition">Цены</Link>
+        <Link href="/dashboard" className="hover:text-pink-300 transition">Кабинет</Link>
+      </div>
+    </nav>
   );
 }
