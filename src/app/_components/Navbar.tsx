@@ -1,39 +1,21 @@
 'use client';
-
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Navbar() {
-  const menuItems = [
-    { label: 'Главная', href: '/' },
-    { label: 'Сервисы', href: '/services' },
-    { label: 'Цены', href: '/pricing' },
-    { label: 'Кабинет', href: '/dashboard' },
-  ];
-
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full bg-white shadow-md z-50"
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="w-full fixed top-0 z-50 bg-white shadow-md px-8 py-4 flex justify-between items-center"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <Link href="/" className="text-2xl font-bold text-blue-600">
-          Redpillnet
-        </Link>
-
-        <div className="flex gap-6">
-          {menuItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+      <Link href="/" className="text-2xl font-bold text-blue-600">Redpillnet</Link>
+      <div className="flex gap-6 text-gray-700 font-medium text-sm md:text-base">
+        <Link href="/">Главная</Link>
+        <Link href="/services">Сервисы</Link>
+        <Link href="/pricing">Цены</Link>
+        <Link href="/dashboard">Кабинет</Link>
       </div>
     </motion.nav>
   );
