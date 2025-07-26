@@ -1,20 +1,27 @@
-"use client";
-import { motion } from "framer-motion";
-import Link from "next/link";
+'use client';
 
-type Props = { title: string; description: string; link: string };
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
-export default function ServiceCard({ title, description, link }: Props) {
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  icon: ReactNode;
+}
+
+export default function ServiceCard({ title, description, link, icon }: Props) {
   return (
     <motion.div
+      className="border rounded-xl p-6 shadow bg-white hover:shadow-xl transition cursor-pointer flex flex-col items-center text-center"
       whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 200 }}
-      className="border rounded-xl p-6 shadow hover:shadow-lg bg-white"
     >
+      <div className="text-4xl mb-4">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
       <Link href={link} className="text-blue-600 font-medium hover:underline">
-        Подробнее →
+        Перейти →
       </Link>
     </motion.div>
   );

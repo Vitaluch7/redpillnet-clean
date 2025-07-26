@@ -1,12 +1,15 @@
+import './globals.css';
+import { ReactNode } from 'react';
+
 export const metadata = {
-  title: "Redpillnet",
-  description: "AI content generation platform",
+  title: 'Redpillnet – AI Platform',
+  description: 'Создавай AI-контент: текст, изображения, видео и голос за секунды!',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="ru">
+      <body className="bg-gray-50 text-gray-900">{children}</body>
     </html>
   );
 }

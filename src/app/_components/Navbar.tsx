@@ -1,45 +1,36 @@
-"use client";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+'use client';
 
-const menu = [
-  { name: "Главная", path: "/" },
-  { name: "Сервисы", path: "/services" },
-  { name: "Цены", path: "/pricing" },
-  { name: "Кабинет", path: "/dashboard" },
-];
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const menuItems = [
+    { label: 'Главная', href: '/' },
+    { label: 'Сервисы', href: '/services' },
+    { label: 'Цены', href: '/pricing' },
+    { label: 'Кабинет', href: '/dashboard' },
+  ];
 
   return (
     <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      className="fixed top-0 left-0 w-full bg-white shadow-md z-50"
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50"
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <Link href="/" className="text-2xl font-bold text-blue-600">
-          🚀 Redpillnet
+          Redpillnet
         </Link>
+
         <div className="flex gap-6">
-          {menu.map((item) => (
+          {menuItems.map((item) => (
             <Link
-              key={item.path}
-              href={item.path}
-              className={`relative text-gray-700 font-medium hover:text-blue-600 transition ${
-                pathname === item.path ? "text-blue-600" : ""
-              }`}
+              key={item.href}
+              href={item.href}
+              className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              {item.name}
-              {pathname === item.path && (
-                <motion.span
-                  layoutId="underline"
-                  className="absolute -bottom-1 left-0 w-full h-[2px] bg-blue-600"
-                />
-              )}
+              {item.label}
             </Link>
           ))}
         </div>
